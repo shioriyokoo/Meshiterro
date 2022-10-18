@@ -3,6 +3,8 @@ class PostImage < ApplicationRecord
   has_one_attached :image
   belongs_to :user
   has_many :post_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+
 
   def get_image
     unless image.attached?
@@ -16,6 +18,10 @@ def destroy
   @post_image = PostImage.find(params[:id])
   @post_image.destroy
   redirect_to '/post_images'
+end
+
+def favorited_by?(user)
+  favorites.exists?(user_id: user.id)
 end
 
 end
