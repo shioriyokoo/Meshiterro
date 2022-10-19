@@ -19,9 +19,6 @@ validates :image, presence: true
   end
 
 def destroy
-  @post_image = PostImage.find(params[:id])
-  @post_image.destroy
-  redirect_to '/post_images'
 end
 
 def favorited_by?(user)
